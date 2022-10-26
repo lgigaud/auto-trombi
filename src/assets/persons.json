@@ -1,0 +1,20 @@
+[
+    {
+        "firstname": "Michel",
+        "lastname": "Sardou",
+        "company": "Google",
+        "year": 2017
+    },
+    {
+        "firstname": "JJ",
+        "lastname": "Goldman",
+        "company": "Amazon",
+        "year": 2017
+    },
+    {
+        "firstname": "Lois",
+        "lastname": "Gigaud",
+        "company": "Capgemini",
+        "year": 2020
+    }
+]
