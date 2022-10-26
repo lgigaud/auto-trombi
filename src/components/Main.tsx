@@ -1,4 +1,4 @@
-import Banner from './Banner';
+import Banner from '@/components/Banner';
 import PersonList from './PersonList';
 import ModaleAddPerson from './ModaleAddPerson';
 import { useState, createContext, useEffect } from 'react';
@@ -40,7 +40,6 @@ function Main() {
 
   return (
     <div>
-
       <ModaleContext.Provider value={{ getModale, toggleModale }}>
         <PersonsContext.Provider value={{ getPersons, setPersons }}>
           <Banner />

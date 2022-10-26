@@ -15,13 +15,13 @@ function ModaleAddPerson() {
   const { addPerson } = usePersons;
 
   const addPersonForm = () => {
-    let p = {
+    const p = {
       firstname: firstname,
       lastname: lastname,
       company: company,
       year: year
     };
-    let tmp = getPersons;
+    const tmp = getPersons;
     tmp.push(p);
 
     setPersons(tmp);

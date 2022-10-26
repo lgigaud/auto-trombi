@@ -1,31 +1,54 @@
 {
-  "env": {
-    "node": true,
-    "browser": true,
-    "es2021": true,
-    "webextensions": true
-  },
   "extends": [
     "eslint:recommended",
+    "plugin:import/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:react/jsx-runtime"
+    "prettier"
   ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  "overrides": [
+    {
+      // enable eslint-plugin-testing-library rules or preset only for matching files!
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": []
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "react"
+    {
+      "files": [
+        "**/*.ts?(x)"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+      ]
+    }
   ],
   "rules": {
-    "react/prop-types": "off",
-    "prefer-const": "error"
+    "@typescript-eslint/no-empty-function": [
+      "error",
+      {
+        "allow": [
+          "arrowFunctions"
+        ]
+      }
+    ]
+    // for testing if eslint works properly,
+    // feel free to remove this if you do not need it
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {}
+    },
     "react": {
       "version": "detect"
     }
