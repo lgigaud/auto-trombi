@@ -8,10 +8,9 @@ export const usePersons = {
       .select("*");
     return data as Person[];
   },
-  addPerson: (person: Person) => {
-    supabase
-      .from("persons")
-      .insert(person)
-      .single();
+  addPerson: async (person: Person) => {
+    await supabase
+      .from('persons')
+      .insert(person);
   },
 }

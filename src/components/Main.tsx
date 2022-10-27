@@ -6,6 +6,7 @@ import supabase from '../utils/bddutils';
 import { usePersons } from '../hooks/usePersons';
 
 export type Person = {
+  id: number,
   firstname: string;
   lastname: string;
   company: string;

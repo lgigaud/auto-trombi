@@ -15,7 +15,9 @@ function ModaleAddPerson() {
   const { addPerson } = usePersons;
 
   const addPersonForm = () => {
+    const id = Math.floor(Math.random() * 9999);
     const p = {
+      id: id,
       firstname: firstname,
       lastname: lastname,
       company: company,
