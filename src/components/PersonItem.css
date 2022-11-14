@@ -1,0 +1,10 @@
+.personItem {
+  background-color: lightgrey;
+  padding: 10px;
+  border-radius: 5px;
+  width: 165px;
+}
+
+.personItem img {
+  border-radius: 5px;
+}

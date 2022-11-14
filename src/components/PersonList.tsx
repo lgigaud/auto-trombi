@@ -5,6 +5,7 @@ import { PersonsContext } from './Main';
 function PersonList() {
   const { getPersons } = useContext(PersonsContext);
 
+  console.log("render");
   return (
     <div className="flex p-5">
       {getPersons.map((p, i) => <PersonItem person={p} key={i} />)}

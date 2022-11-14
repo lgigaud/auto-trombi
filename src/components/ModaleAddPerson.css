@@ -11,9 +11,38 @@
 }
 
 .modaleContent {
+    border-radius: 10px;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%;
+}
+
+input {
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.addButton {
+    background-color: green;
+    color: white;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.removeButton {
+    background-color: red;
+    color: white;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.closeButton {
+    background-color: #242423;
+    color: white;
+    width: 80px;
+    border-radius: 5px;
 }

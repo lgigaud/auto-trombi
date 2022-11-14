@@ -1,8 +1,6 @@
 import Banner from '@/components/Banner';
 import PersonList from './PersonList';
-import ModaleAddPerson from './ModaleAddPerson';
-import { useState, createContext, useEffect } from 'react';
-import supabase from '../utils/bddutils';
+import { useState, createContext, useEffect, useMemo } from 'react';
 import { usePersons } from '../hooks/usePersons';
 
 export type Person = {
@@ -12,43 +10,33 @@ export type Person = {
   company: string;
   year: string;
 };
-type ModaleContextType = {
-  getModale: boolean;
-  toggleModale: (newValue: boolean) => void;
-};
 type PersonContextType = {
   getPersons: Person[];
   setPersons: (newPerson: Person[]) => void;
+  setPerson: (person: Person) => void;
 };
 
 export const PersonsContext = createContext<PersonContextType>({
   getPersons: [],
   setPersons: () => { },
-});
-export const ModaleContext = createContext<ModaleContextType>({
-  getModale: false,
-  toggleModale: () => { },
+  setPerson: () => { },
 });
 
 function Main() {
   const [getPersons, setPersons] = useState<Person[]>([]);
-  const [getModale, toggleModale] = useState(false);
-  const { getPersons: getPersons2 } = usePersons;
+  const setPerson = (person: Person) => setPersons(getPersons.map(p => p.id === person.id ? person : p))
+  const { getAllPersons } = useMemo(() => usePersons, []);
 
   useEffect(() => {
-    getPersons2().then(p => setPersons(p))
-  }, []);
+    getAllPersons().then(p => setPersons(p));
+  }, [getAllPersons]);
 
   return (
     <div>
-      <ModaleContext.Provider value={{ getModale, toggleModale }}>
-        <PersonsContext.Provider value={{ getPersons, setPersons }}>
-          <Banner />
-          <PersonList />
-          <ModaleAddPerson />
-        </PersonsContext.Provider>
-      </ModaleContext.Provider>
-
+      <PersonsContext.Provider value={{ getPersons, setPersons, setPerson }}>
+        <Banner />
+        <PersonList />
+      </PersonsContext.Provider>
     </div>
   );
 }

@@ -1,12 +1,16 @@
-import { useContext } from 'react';
-import { ModaleContext } from '@/components/Main';
+import { useState } from 'react';
+import ModaleAddPerson from './ModaleAddPerson';
+import './banner.css';
 
 function Banner() {
-  const { toggleModale } = useContext(ModaleContext);
+  const [openAddPerson, setOpenAddPerson] = useState(false);
+
   return (
-    <div className="flex justify-between p-4">
-      <div>Trombinoscope</div>
-      <button onClick={() => toggleModale(true)}>Ajouter</button>
+    <div className="flex justify-between p-4 banner">
+      <div className="font-bold">Trombinoscope</div>
+      <button className="addButton" onClick={() => setOpenAddPerson(true)}>Ajouter</button>
+
+      <ModaleAddPerson isOpen={openAddPerson} onClose={() => setOpenAddPerson(false)} />
     </div>
   );
 }

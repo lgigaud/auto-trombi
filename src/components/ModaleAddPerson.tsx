@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
 import { usePersons } from '../hooks/usePersons';
-import { PersonsContext, ModaleContext } from './Main';
+import { PersonsContext } from './Main';
 import './ModaleAddPerson.css';
 
-function ModaleAddPerson() {
+type PropsType = { isOpen: boolean, onClose: () => void }
+
+function ModaleAddPerson({ isOpen, onClose }: PropsType) {
   const { getPersons, setPersons } = useContext(PersonsContext);
-  const { getModale, toggleModale } = useContext(ModaleContext);
 
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
@@ -26,19 +27,24 @@ function ModaleAddPerson() {
     const tmp = getPersons;
     tmp.push(p);
 
+    console.log(p);
+    console.log(tmp);
+
     setPersons(tmp);
     addPerson(p);
-    toggleModale(false);
+
+    console.log(getPersons);
+    onClose();
   }
 
   return (
-    getModale ? (
+    isOpen ? (
       <div className="modale">
-        <div className="modaleContent flex flex-col">
-          <div className="m-1 text-center">Ajouter une personne</div>
+        <div className="modaleContent flex flex-col items-center">
+          <div className="m-1 text-center font-bold">Ajouter une personne</div>
 
-          <form className="flex justify-center p-1">
-            <label>Prenom
+          <form className="flex flex-col p-1">
+            <label>Prenom<br />
               <input
                 type="text"
                 value={firstname}
@@ -46,7 +52,7 @@ function ModaleAddPerson() {
                 className="border"
               />
             </label>
-            <label>Nom
+            <label>Nom<br />
               <input
                 type="text"
                 value={lastname}
@@ -54,7 +60,7 @@ function ModaleAddPerson() {
                 className="border"
               />
             </label>
-            <label>Entreprise
+            <label>Entreprise<br />
               <input
                 type="text"
                 value={company}
@@ -62,7 +68,7 @@ function ModaleAddPerson() {
                 className="border"
               />
             </label>
-            <label>Année
+            <label>Année<br />
               <input
                 type="text"
                 value={year}
@@ -71,9 +77,10 @@ function ModaleAddPerson() {
               />
             </label>
           </form>
-
-          <button onClick={() => addPersonForm()}>Ajouter</button>
-          <button onClick={() => toggleModale(false)}>Close</button>
+          <div>
+            <button className="addButton m-2" onClick={() => addPersonForm()}>Ajouter</button>
+            <button className="closeButton m-2" onClick={() => onClose()}>Close</button>
+          </div>
         </div>
       </div>
     ) : null
