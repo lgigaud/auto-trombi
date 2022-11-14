@@ -16,7 +16,7 @@ function PersonItem({ person }: PersonProps) {
 
   return (
     <div className="flex flex-col m-4 personItem">
-      <img src={img} alt={alttxt} />
+      <img src={img} alt={alttxt} className="h-44" />
       <p className="font-bold mt-2">{person.firstname} {person.lastname}</p>
       <p>{person.company}</p>
       <p>{person.year}</p>

@@ -24,13 +24,7 @@ function ModaleAddPerson({ isOpen, onClose }: PropsType) {
       company: company,
       year: year
     };
-    const tmp = getPersons;
-    tmp.push(p);
-
-    console.log(p);
-    console.log(tmp);
-
-    setPersons(tmp);
+    setPersons([...getPersons, p]);
     addPerson(p);
 
     console.log(getPersons);

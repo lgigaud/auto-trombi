@@ -7,7 +7,7 @@ function PersonList() {
 
   console.log("render");
   return (
-    <div className="flex p-5">
+    <div className="flex flex-wrap p-5">
       {getPersons.map((p, i) => <PersonItem person={p} key={i} />)}
     </div>
   );
